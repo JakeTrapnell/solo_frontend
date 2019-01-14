@@ -4,6 +4,7 @@ import Header from './Header.js'
 import Game from './Game.js'
 
 class App extends Component {
+
   render() {
     return (
 
@@ -16,7 +17,7 @@ class App extends Component {
           <Game />
         </div>
     )
-  }
+  }  
 }
 
 export default App;
