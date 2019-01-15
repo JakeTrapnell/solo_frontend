@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Header.js'
 import Game from './Game.js'
+import Reset from './Reset.js'
 
 class App extends Component {
 
@@ -15,6 +16,7 @@ class App extends Component {
           </header>
           <p>Please play tic tac toe!!!</p>
           <Game />
+          <Reset/>
         </div>
     )
   }  
