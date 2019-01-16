@@ -1,5 +1,5 @@
 .App {
-  background-color: rebeccapurple;
+  background-color: white;
   text-align: center;
   color: white;
   text-align: -webkit-center;
@@ -15,40 +15,34 @@
   background-color: #538282;
 }
 
-.board-row{
-  clear: both;
-  content:"";
-  display: table;
-  justify-content: center;
-  align-content: center;
-}
-
-.status{
-  margin-bottom: 10px;
-}
-
-.square{
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
+ul {
+  list-style-type: none;
+  margin: 0;
   padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
   text-align: center;
-  width: 34px;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
-.spuare:focus{
-outline: none;
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
 }
 
-.game-info{
-  margin-left: 20px;
-}
+
+
+
 
 
 

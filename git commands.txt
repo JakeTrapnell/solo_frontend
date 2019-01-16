@@ -1,0 +1,26 @@
+TO CREATE GIT REPO!
+
+git init
+git add .
+git commit -m"message!"
+git remote add origin urlplacething
+git push -u origin master
+
+
+TO MAKE CHANGES TO REPO
+
+git add .
+git commit -m "i changed some stuff"
+git push origin master
+
+
+TO PULL
+
+git pull origin master
+
+MAKE BRANCH
+
+on github make new branch
+bash:
+
+git checkout -b "name of branch"
