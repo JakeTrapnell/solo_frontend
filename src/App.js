@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Header.js';
 import NavBarComp from './NavBarComp'
+import CrudButtons from './CrudButtons'
 
 class App extends Component {
 
@@ -14,6 +15,7 @@ class App extends Component {
             <Header headerProp="My Solo Project" />
           </header>
             <NavBarComp/>
+            <CrudButtons/>
         </div>
     )
   }  

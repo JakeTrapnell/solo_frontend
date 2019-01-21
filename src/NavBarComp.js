@@ -6,9 +6,9 @@ class NavBarComp extends Component{
     {
         return(
             <ul >
-                <li><a href="default.asp">Home</a></li>
-                <li><a href="default.asp">Users</a></li>
-                <li><a href="default.asp">Objects</a></li>
+                <li><button className= "navButton">Home</button></li>
+                <li><button className= "navButton">Users</button></li>
+                <li><button className= "navButton">Objects</button></li>
             </ul>
         );
     }
