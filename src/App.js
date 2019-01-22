@@ -3,8 +3,16 @@ import './App.css';
 import Header from './Header.js';
 import NavBarComp from './NavBarComp'
 import CrudButtons from './CrudButtons'
+import CreateComp from  './CreateComp'
+import ReadComp from  './ReadComp'
+import UpdateComp from  './UpdateComp'
+import DeleteComp from  './DeleteComp'
 
 class App extends Component {
+  state ={
+    objects: 'Recipes',
+  }
+
 
   render() {
     return (
@@ -15,7 +23,10 @@ class App extends Component {
             <Header headerProp="My Solo Project" />
           </header>
             <NavBarComp/>
-            <CrudButtons/>
+            <CrudButtons/>          
+            <body>
+              <p>This application will allow you to create and store {this.state.objects}</p>
+            </body>
         </div>
     )
   }  

@@ -1,16 +1,30 @@
 import React, { Component } from 'react';
+import CreateComp from  './CreateComp'
+import ReadComp from  './ReadComp'
+import UpdateComp from  './UpdateComp'
+import DeleteComp from  './DeleteComp'
 
 class CrudButtons extends Component{
 
     render()
     {
         return(
-            <div>
-                <button className= "navButton">Create</button>
-                <button className= "navButton">Read</button>
-                <button className= "navButton">Update</button>
-                <button className= "navButton">Delete</button>
+            <div className= "crudButtons">
+            
+            <br/>
+            <br/>
+            <br/>
+            <form>
+                Name:<br/>
+                <input></input>
+            </form>
+            <br/>
+            <CreateComp/>
+            <ReadComp/>
+            <UpdateComp/>
+            <DeleteComp/>
             </div>
+
         );
     }
 }
