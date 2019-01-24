@@ -1,25 +1,33 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-let userInput;
-
-
 class CrudButtons extends Component{
-    state = {
-        userData: []
-    }
+    
+    constructor(props){
+        super(props);
+        this.state = {name: "default"};
+        }
+    
     
 
     getName =() =>{
         axios({
             method: 'get',
             url: 'http://www.omdbapi.com/?i=tt3896198&apikey=88f96886',
+            //url: 'http://www.omdbapi.com/?s=harry&apikey=88f96886',
             responseType: 'json'
           })
           .then(response=>{
-            console.log(response);
-            const userData = response;
-            this.setState({name: response.data.Search});
+              if(response.data !== undefined){
+                //console.log(response);
+                //.Search is part of the api response not built in or set var
+                //this.setState({name: response.data.Search});
+                this.setState({name: response});
+                console.log(response.data);
+              }
+              else{
+                  console.log("failed");                 
+              }
           });
     }
 
@@ -45,7 +53,9 @@ class CrudButtons extends Component{
             <button className= "navButton">Update</button>
             <button className= "navButton">Delete</button>
 
-            <p>my name is:</p>
+            
+            <p>{JSON.stringify(this.state.name.data)}</p>
+    
 
 
 

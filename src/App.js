@@ -3,7 +3,7 @@ import './App.css';
 import Header from './Header.js';
 import NavBarComp from './NavBarComp'
 import CrudButtons from './CrudButtons'
-import Axios from 'axios';
+
 
 class App extends Component {
   render() {
