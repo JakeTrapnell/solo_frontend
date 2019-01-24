@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
-import CreateComp from  './CreateComp'
-import ReadComp from  './ReadComp'
-import UpdateComp from  './UpdateComp'
-import DeleteComp from  './DeleteComp'
+import axios from 'axios';
 
 let userInput;
 
+
 class CrudButtons extends Component{
-
-    constructor(props){
-        super(props);
-        this.state ={name: ""};
+    state = {
+        userData: []
+    }
     
+
+    getName =() =>{
+        axios({
+            method: 'get',
+            url: 'http://www.omdbapi.com/?i=tt3896198&apikey=88f96886',
+            responseType: 'json'
+          })
+          .then(response=>{
+            console.log(response);
+            const userData = response;
+            this.setState({name: response.data.Search});
+          });
     }
 
-    update =(event)=>{
-        userInput = event.target.value;
-        console.log(userInput);
-        this.setState({name: userInput});
-    }
-
+    
     render()
     {
         return(
@@ -31,15 +35,17 @@ class CrudButtons extends Component{
             <form>
                 Name:
                 <br/>
-                <input id="userInput" type="text" placeholder="Enter your name" onChange={this.update}/>
+                <input id="userInput" type="text" placeholder="Enter your name"/>
             </form>
             <br/>
-            <p>Name: {this.state.name}</p>
+            <p>Name:</p>
             <br/>
-            <CreateComp/>
-            <ReadComp/>
-            <UpdateComp/>
-            <DeleteComp/>
+            <button className= "navButton" onClick={this.getName}>Create</button>
+            <button className= "navButton">Search</button>
+            <button className= "navButton">Update</button>
+            <button className= "navButton">Delete</button>
+
+            <p>my name is:</p>
 
 
 

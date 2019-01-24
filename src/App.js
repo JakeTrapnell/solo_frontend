@@ -3,17 +3,9 @@ import './App.css';
 import Header from './Header.js';
 import NavBarComp from './NavBarComp'
 import CrudButtons from './CrudButtons'
-import CreateComp from  './CreateComp'
-import ReadComp from  './ReadComp'
-import UpdateComp from  './UpdateComp'
-import DeleteComp from  './DeleteComp'
+import Axios from 'axios';
 
 class App extends Component {
-  state ={
-    objects: 'Recipes',
-  }
-
-
   render() {
     return (
 
@@ -24,9 +16,9 @@ class App extends Component {
           </header>
             <NavBarComp/>
             <CrudButtons/>          
-            <body>
-              <p>This application will allow you to create and store {this.state.objects}</p>
-            </body>
+            
+              <p>This application will allow you to create and store recipes</p>
+            
         </div>
     )
   }  
