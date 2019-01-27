@@ -3,27 +3,30 @@ import axios from 'axios';
 
 class CrudButtons extends Component{
     
-    constructor(props){
-        super(props);
-        this.state = {name: "default"};
+
+    constructor(){
+        super();
+        this.state = {name: ""};
         }
     
-    
+    createUser =() =>{
+        axios({
+            method: 'post',
+            url: 'http://localhost:8080/Solo-API/rest/user/json',
+            responseType: 'json'
+        })
+    }
 
-    getName =() =>{
+    readUser =() =>{
         axios({
             method: 'get',
-            url: 'http://www.omdbapi.com/?i=tt3896198&apikey=88f96886',
-            //url: 'http://www.omdbapi.com/?s=harry&apikey=88f96886',
+            url: 'http://localhost:8080/Solo-API/rest/user/json',
             responseType: 'json'
           })
           .then(response=>{
               if(response.data !== undefined){
-                //console.log(response);
-                //.Search is part of the api response not built in or set var
-                //this.setState({name: response.data.Search});
-                this.setState({name: response});
-                console.log(response.data);
+                this.setState({name: response.data[0].name});
+                console.log(response.data[0]);
               }
               else{
                   console.log("failed");                 
@@ -31,33 +34,40 @@ class CrudButtons extends Component{
           });
     }
 
+
+    deleteUser =() =>{
+        axios({
+            method: 'delete',
+            url: 'http://localhost:8080/Solo-API/rest/user/json',
+            responseType: 'json'
+        })
+    }
+
     
     render()
     {
         return(
             <div className= "crudButtons">
-            
             <br/>
             <br/>
             <br/>
             <form>
                 Name:
                 <br/>
-                <input id="userInput" type="text" placeholder="Enter your name"/>
+                <input ref="name" id="userInput" type="text" placeholder="Enter your name"/>
             </form>
             <br/>
-            <p>Name:</p>
             <br/>
-            <button className= "navButton" onClick={this.getName}>Create</button>
-            <button className= "navButton">Search</button>
+            <button className= "navButton" onClick={this.readUser}>Create</button>
+            <button className= "navButton" onClick={this.readUser}>Search</button>
             <button className= "navButton">Update</button>
             <button className= "navButton">Delete</button>
 
+            <br/>            
+            <p>Name: {JSON.stringify(this.state.name)}</p>
+            <br/>
             
-            <p>{JSON.stringify(this.state.name.data)}</p>
     
-
-
 
             </div>
 
