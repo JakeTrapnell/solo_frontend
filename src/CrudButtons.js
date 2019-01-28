@@ -6,27 +6,51 @@ class CrudButtons extends Component{
 
     constructor(){
         super();
-        this.state = {name: ""};
+        this.state=
+            { 
+            userData: [{}] 
+            };
+        //this.state = {id: 0, name: "default"};
+
+        axios.get("http://localhost:8080/Solo-API/rest/user/json")
+        .then(response => {
+            this.setState({userData: response.data})
+        })
         }
+
+    updateName = (event) =>{
+        this.setState({name: event.target.value});
+        console.log(this.state.name);
+        //handles name input change not the database
+    }
+
+    updateId = (event) =>{
+        this.setState({id: event.target.value});
+        console.log(this.state.id);
+        //handles id input change not the database
+    }
     
     createUser =() =>{
         axios({
-            method: 'post',
+            method: 'POST',
             url: 'http://localhost:8080/Solo-API/rest/user/json',
-            responseType: 'json'
-        })
+            data: {
+                name: this.state.name
+            }
+            
+        });
+        console.log(this.state.name + " : added to database");
     }
 
     readUser =() =>{
         axios({
-            method: 'get',
+            method: 'GET',
             url: 'http://localhost:8080/Solo-API/rest/user/json',
             responseType: 'json'
           })
           .then(response=>{
               if(response.data !== undefined){
-                this.setState({name: response.data[0].name});
-                console.log(response.data[0]);
+                this.setState({name: response.data[this.state.id].name});
               }
               else{
                   console.log("failed");                 
@@ -37,8 +61,8 @@ class CrudButtons extends Component{
 
     deleteUser =() =>{
         axios({
-            method: 'delete',
-            url: 'http://localhost:8080/Solo-API/rest/user/json',
+            method: 'DELETE',
+            url: 'http://localhost:8080/Solo-API/rest/user/json/' + this.state.id,
             responseType: 'json'
         })
     }
@@ -49,19 +73,17 @@ class CrudButtons extends Component{
         return(
             <div className= "crudButtons">
             <br/>
-            <br/>
-            <br/>
             <form>
-                Name:
                 <br/>
-                <input ref="name" id="userInput" type="text" placeholder="Enter your name"/>
+                <input ref="id" id="userInputOne" type="number" placeholder="Enter id number" onChange={this.updateId}/>
+                <input ref="name" id="userInput" type="text" placeholder="Enter your name" onChange={this.updateName}/>
             </form>
             <br/>
             <br/>
-            <button className= "navButton" onClick={this.readUser}>Create</button>
+            <button className= "navButton" onClick={this.createUser}>Create</button>
             <button className= "navButton" onClick={this.readUser}>Search</button>
             <button className= "navButton">Update</button>
-            <button className= "navButton">Delete</button>
+            <button className= "navButton" onClick={this.deleteUser}>Delete</button>
 
             <br/>            
             <p>Name: {JSON.stringify(this.state.name)}</p>
