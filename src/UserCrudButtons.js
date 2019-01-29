@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class CrudButtons extends Component{
+class UserCrudButtons extends Component{
     
 
     constructor(){
         super();
         this.state=
             { 
-            userData: [{}] 
+            userData: [{}]
             };
-        //this.state = {id: 0, name: "default"};
 
         axios.get("http://localhost:8080/Solo-API/rest/user/json")
         .then(response => {
@@ -45,12 +44,12 @@ class CrudButtons extends Component{
     readUser =() =>{
         axios({
             method: 'GET',
-            url: 'http://localhost:8080/Solo-API/rest/user/json',
+            url: 'http://localhost:8080/Solo-API/rest/user/json' + this.setState.id,
             responseType: 'json'
           })
           .then(response=>{
               if(response.data !== undefined){
-                this.setState({name: response.data[this.state.id].name});
+                this.setState({name: response.data[0].name});
               }
               else{
                   console.log("failed");                 
@@ -76,6 +75,7 @@ class CrudButtons extends Component{
             <form>
                 <br/>
                 <input ref="id" id="userInputOne" type="number" placeholder="Enter id number" onChange={this.updateId}/>
+                <br/>
                 <input ref="name" id="userInput" type="text" placeholder="Enter your name" onChange={this.updateName}/>
             </form>
             <br/>
@@ -86,7 +86,7 @@ class CrudButtons extends Component{
             <button className= "navButton" onClick={this.deleteUser}>Delete</button>
 
             <br/>            
-            <p>Name: {JSON.stringify(this.state.name)}</p>
+            <p>User Name: {JSON.stringify(this.state.name)}</p>
             <br/>
             
     
@@ -97,4 +97,4 @@ class CrudButtons extends Component{
     }
 }
 
-export default CrudButtons;
+export default UserCrudButtons;

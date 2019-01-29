@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Header.js';
 import NavBarComp from './NavBarComp'
-import CrudButtons from './CrudButtons'
+import UserCrudButtons from './UserCrudButtons';
+import RecipeCrudButtons from './RecipeCrudButtons';
 
 
 class App extends Component {
@@ -15,10 +16,15 @@ class App extends Component {
             <Header headerProp="My Solo Project" />
           </header>
             <NavBarComp/>
-            <CrudButtons/>          
-            
-              <p>This application will allow you to create and store recipes</p>
-            
+            <br/>
+            <p>This application will allow you to create and store recipes</p>
+            <br/>
+            <br/>
+            <UserCrudButtons/> 
+            <br/>
+            <br/>
+            <br/>
+            <RecipeCrudButtons/>         
         </div>
     )
   }  
