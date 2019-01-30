@@ -6,14 +6,11 @@ class RecipeCrudButtons extends Component{
 
     constructor(){
         super();
-        this.state=
-            { 
-            recipeData: {}
-            };
+        this.state = {recipeData: "Default"};
 
-        axios.get("http://localhost:8080/Solo-API/rest/recipe/json")
+        axios.get("http://localhost:8080/Solo-API/rest/recipe/json/1")
         .then(response => {
-            this.setState({recipeData: response.data})
+            console.log({recipeData: response.data})
         })
         }
 
@@ -58,7 +55,7 @@ class RecipeCrudButtons extends Component{
     createRecipe =() =>{
         axios({
             method: 'POST',
-            url: 'http://localhost:8080/Solo-API/rest/user/json',
+            url: 'http://localhost:8080/Solo-API/rest/recipe/json',
             data: {
                 cuisine: this.state.cuisine,
                 timeToCook: this.state.timeToCook,
@@ -70,12 +67,14 @@ class RecipeCrudButtons extends Component{
             
         });
         console.log(this.state.cuisine + " : added to database");
+        console.log(this.state.cuisine);
     }
 
     readRecipe =() =>{
         axios({
             method: 'GET',
-            url: 'http://localhost:8080/Solo-API/rest/user/json' + this.setState.id,
+            mode: 'no-cors',
+            url: `http://localhost:8080/Solo-API/rest/recipe/json/${this.state.id}`,
             responseType: 'json'
           })
           .then(response=>{
@@ -88,6 +87,8 @@ class RecipeCrudButtons extends Component{
                     ingredients: response.data.ingredients,
                     method: response.data.method
                 });
+                console.log(this.state.cuisine);
+                
 
               }
               else{
@@ -135,7 +136,20 @@ class RecipeCrudButtons extends Component{
             <button className= "navButton" onClick={this.deleteRecipe}>Delete</button>
 
             <br/>            
-            <p>Recipe Name: {JSON.stringify(this.state.cuisine)}</p>
+            <br/>
+            <p>ID: {this.state.id}</p>
+            <br/>
+            <p>Name: {this.state.cuisine}</p>
+            <br/>
+            <p>Time: {this.state.timeToCook}</p>
+            <br/>
+            <p>Vegitarian: {this.state.isVegitarian}</p>
+            <br/>
+            <p>Course: {this.state.course}</p>
+            <br/>
+            <p>Ingredients: {this.state.ingredients}</p>
+            <br/>
+            <p>Method: {this.state.method}</p>
             <br/>
             
     

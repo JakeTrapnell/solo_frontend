@@ -6,15 +6,12 @@ class UserCrudButtons extends Component{
 
     constructor(){
         super();
-        this.state=
-            { 
-            userData: [{}]
-            };
+        this.state = {userData: "Default"};
 
-        axios.get("http://localhost:8080/Solo-API/rest/user/json")
-        .then(response => {
-            this.setState({userData: response.data})
-        })
+         axios.get("http://localhost:8080/Solo-API/rest/user/json/1")
+         .then(response => {
+             console.log({userData: response.data})
+         })
         }
 
     updateName = (event) =>{
@@ -44,15 +41,17 @@ class UserCrudButtons extends Component{
     readUser =() =>{
         axios({
             method: 'GET',
-            url: 'http://localhost:8080/Solo-API/rest/user/json' + this.setState.id,
+            mode: 'no-cors',
+            url: `http://localhost:8080/Solo-API/rest/user/json/${this.state.id}`,
             responseType: 'json'
           })
           .then(response=>{
               if(response.data !== undefined){
-                this.setState({name: response.data[0].name});
+                this.setState({'userData': response.data.name});
+                console.log(response.data);
               }
               else{
-                  console.log("failed");                 
+                  console.log("failed to read user");                 
               }
           });
     }
@@ -64,6 +63,7 @@ class UserCrudButtons extends Component{
             url: 'http://localhost:8080/Solo-API/rest/user/json/' + this.state.id,
             responseType: 'json'
         })
+        console.log("user deleted");
     }
 
     
@@ -86,8 +86,11 @@ class UserCrudButtons extends Component{
             <button className= "navButton" onClick={this.deleteUser}>Delete</button>
 
             <br/>            
-            <p>User Name: {JSON.stringify(this.state.name)}</p>
+            <p>User Name: {JSON.stringify(this.state.userData)}</p>
             <br/>
+            <p>ID: {this.state.id}</p>
+            <br/>
+            <p>Name: {this.state.name}</p>
             
     
 
