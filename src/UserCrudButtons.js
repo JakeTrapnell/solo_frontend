@@ -6,7 +6,7 @@ class UserCrudButtons extends Component{
 
     constructor(){
         super();
-        this.state = {userData: "Default"};
+        this.state = {userData: {} };
 
          axios.get("http://localhost:8080/Solo-API/rest/user/json/1")
          .then(response => {
@@ -32,9 +32,10 @@ class UserCrudButtons extends Component{
             url: 'http://localhost:8080/Solo-API/rest/user/json',
             data: {
                 name: this.state.name
-            }
-            
-        });
+            }   
+        }).then(response=>{
+            console.log(response);
+        })
         console.log(this.state.name + " : added to database");
     }
 
@@ -47,7 +48,7 @@ class UserCrudButtons extends Component{
           })
           .then(response=>{
               if(response.data !== undefined){
-                this.setState({'userData': response.data.name});
+                this.setState({userData: response.data.name});
                 console.log(response.data);
               }
               else{

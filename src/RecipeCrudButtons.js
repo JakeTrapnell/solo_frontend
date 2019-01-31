@@ -6,7 +6,7 @@ class RecipeCrudButtons extends Component{
 
     constructor(){
         super();
-        this.state = {recipeData: "Default"};
+        this.state = {recipeData: "Default" };
 
         axios.get("http://localhost:8080/Solo-API/rest/recipe/json/1")
         .then(response => {
@@ -56,18 +56,16 @@ class RecipeCrudButtons extends Component{
         axios({
             method: 'POST',
             url: 'http://localhost:8080/Solo-API/rest/recipe/json',
-            data: {
+                data: {
                 cuisine: this.state.cuisine,
                 timeToCook: this.state.timeToCook,
                 isVegitarian: this.state.isVegitarian,
                 course: this.state.course,
                 ingredients: this.state.ingredients,
                 method: this.state.method
-            }
-            
+            }            
         });
         console.log(this.state.cuisine + " : added to database");
-        console.log(this.state.cuisine);
     }
 
     readRecipe =() =>{
@@ -88,8 +86,6 @@ class RecipeCrudButtons extends Component{
                     method: response.data.method
                 });
                 console.log(this.state.cuisine);
-                
-
               }
               else{
                   console.log("failed");                 
