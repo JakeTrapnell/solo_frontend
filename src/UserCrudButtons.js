@@ -6,7 +6,7 @@ class UserCrudButtons extends Component{
 
     constructor(){
         super();
-        this.state = {userData: {} };
+        this.state = {userData: {}, name: ""};
 
          axios.get("http://localhost:8080/Solo-API/rest/user/json/1")
          .then(response => {
@@ -48,7 +48,7 @@ class UserCrudButtons extends Component{
           })
           .then(response=>{
               if(response.data !== undefined){
-                this.setState({userData: response.data.name});
+                this.setState({name: response.data.name});
                 console.log(response.data);
               }
               else{
@@ -67,11 +67,23 @@ class UserCrudButtons extends Component{
         console.log("user deleted");
     }
 
+    updateUser =() =>{
+        axios({
+            method: 'POST',
+            url: 'http://localhost:8080/Solo-API/rest/user/json/' + this.state.id,
+            data:  {name: this.state.name} 
+        })
+        .then(response=>{
+            console.log(response);
+        })
+    }
     
     render()
     {
         return(
             <div className= "crudButtons">
+            <br/>
+            <h2>Users</h2>
             <br/>
             <form>
                 <br/>
@@ -83,18 +95,16 @@ class UserCrudButtons extends Component{
             <br/>
             <button className= "navButton" onClick={this.createUser}>Create</button>
             <button className= "navButton" onClick={this.readUser}>Search</button>
-            <button className= "navButton">Update</button>
+            <button className= "navButton" onClick={this.updateUser}>Update</button>
             <button className= "navButton" onClick={this.deleteUser}>Delete</button>
 
             <br/>            
-            <p>User Name: {JSON.stringify(this.state.userData)}</p>
             <br/>
             <p>ID: {this.state.id}</p>
             <br/>
-            <p>Name: {this.state.name}</p>
-            
-    
-
+            <p>User Name: {this.state.name}</p>
+            <br/>
+            <p></p>
             </div>
 
         );

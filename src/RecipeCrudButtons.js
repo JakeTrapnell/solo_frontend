@@ -6,7 +6,8 @@ class RecipeCrudButtons extends Component{
 
     constructor(){
         super();
-        this.state = {recipeData: "Default" };
+        this.state = {recipeData: {}, cuisine: "", timeToCook: "", isVegitarian: "", course: "", ingredients: "", method: ""};
+
 
         axios.get("http://localhost:8080/Solo-API/rest/recipe/json/1")
         .then(response => {
@@ -83,12 +84,11 @@ class RecipeCrudButtons extends Component{
                     isVegitarian: response.data.isVegitarian,
                     course: response.data.course,
                     ingredients: response.data.ingredients,
-                    method: response.data.method
-                });
-                console.log(this.state.cuisine);
+                    method: response.data.method});
+                console.log(response.data);
               }
               else{
-                  console.log("failed");                 
+                  console.log("failed to read recipe");                 
               }
           });
     }
@@ -102,11 +102,29 @@ class RecipeCrudButtons extends Component{
         })
     }
 
+    updateRecipe =() =>{
+        axios({
+            method: 'POST',
+            url: 'http://localhost:8080/Solo-API/rest/recipe/json/' + this.state.id,
+            data: {cuisine: this.state.cuisine,
+                    timeToCook: this.state.timeToCook,
+                    isVegitarian: this.state.isVegitarian,
+                    course: this.state.course,
+                    ingredients: this.state.ingredients,
+                    method: this.state.method}            
+        })
+        .then(response=>{
+            console.log(response);
+        })
+    }
+
     
     render()
     {
         return(
             <div className= "crudButtons">
+            <br/>
+            <h2>Recipes</h2>
             <br/>
             <form>
                 <br/>
@@ -128,7 +146,6 @@ class RecipeCrudButtons extends Component{
             <br/>
             <button className= "navButton" onClick={this.createRecipe}>Create</button>
             <button className= "navButton" onClick={this.readRecipe}>Search</button>
-            <button className= "navButton">Update</button>
             <button className= "navButton" onClick={this.deleteRecipe}>Delete</button>
 
             <br/>            
@@ -147,9 +164,6 @@ class RecipeCrudButtons extends Component{
             <br/>
             <p>Method: {this.state.method}</p>
             <br/>
-            
-    
-
             </div>
 
         );

@@ -15,7 +15,6 @@ class App extends Component {
           <header className="App-header">
             <Header headerProp="My Solo Project" />
           </header>
-            <NavBarComp/>
             <br/>
             <p>This application will allow you to create and store recipes</p>
             <br/>
@@ -23,11 +22,9 @@ class App extends Component {
             <UserCrudButtons/> 
             <br/>
             <br/>
-            <br/>
             <RecipeCrudButtons/>         
         </div>
     )
   }  
 }
-
 export default App;
