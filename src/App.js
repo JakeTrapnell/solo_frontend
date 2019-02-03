@@ -13,10 +13,10 @@ class App extends Component {
       
         <div className="App">
           <header className="App-header">
-            <Header headerProp="My Solo Project" />
+            <Header headerProp="Project Recipes" />
           </header>
             <br/>
-            <p>This application will allow you to create and store recipes</p>
+            <h2>This application will allow you to create and store your favourite recipes!</h2>
             <br/>
             <br/>
             <UserCrudButtons/> 
