@@ -114,9 +114,6 @@ class RecipeCrudButtons extends Component{
                 ingredients: this.state.ingredients,
                 method: this.state.method}         
         })
-        .then(response=>{
-            console.log(response);
-        })
     }
 
     
@@ -148,6 +145,7 @@ class RecipeCrudButtons extends Component{
             <button className= "navButton" onClick={this.createRecipe}>Create</button>
             <button className= "navButton" onClick={this.readRecipe}>Search</button>
             <button className= "navButton" onClick={this.deleteRecipe}>Delete</button>
+            <button className= "navButton" onClick={this.updateRecipe}>Update</button>
 
             <br/>            
             <br/>
