@@ -106,12 +106,13 @@ class RecipeCrudButtons extends Component{
         axios({
             method: 'POST',
             url: 'http://localhost:8080/Solo-API/rest/recipe/json/' + this.state.id,
-            data: {cuisine: this.state.cuisine,
-                    timeToCook: this.state.timeToCook,
-                    isVegitarian: this.state.isVegitarian,
-                    course: this.state.course,
-                    ingredients: this.state.ingredients,
-                    method: this.state.method}            
+            data: {
+                cuisine: this.state.cuisine,
+                timeToCook: this.state.timeToCook,
+                isVegitarian: this.state.isVegitarian,
+                course: this.state.course,
+                ingredients: this.state.ingredients,
+                method: this.state.method}         
         })
         .then(response=>{
             console.log(response);
