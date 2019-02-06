@@ -57,7 +57,6 @@ class UserCrudButtons extends Component{
           });
     }
 
-
     deleteUser =() =>{
         axios({
             method: 'DELETE',
@@ -86,7 +85,6 @@ class UserCrudButtons extends Component{
             <h2>Users</h2>
             <br/>
             <form>
-                <br/>
                 <input ref="id" id="userInputOne" type="number" placeholder="Enter id number" onChange={this.updateId}/>
                 <br/>
                 <input ref="name" id="userInput" type="text" placeholder="Enter your name" onChange={this.updateName}/>
@@ -94,7 +92,7 @@ class UserCrudButtons extends Component{
             <br/>
             <br/>
             <button className= "navButton" onClick={this.createUser}>Create</button>
-            <button className= "navButton" onClick={this.readUser}>Search</button>
+            <button className= "navButton" onClick={this.readUser}>Search by id</button>
             <button className= "navButton" onClick={this.updateUser}>Update</button>
             <button className= "navButton" onClick={this.deleteUser}>Delete</button>
 

@@ -125,7 +125,6 @@ class RecipeCrudButtons extends Component{
             <h2>Recipes</h2>
             <br/>
             <form>
-                <br/>
                 <input ref="id" id="recipeID" type="number" placeholder="Enter Recipe ID Number:" onChange={this.updateId}/>
                 <br/>
                 <input ref="cuisine" id="recipeCuisine" type="text" placeholder="Enter Recipe name:" onChange={this.updateCuisine}/>
