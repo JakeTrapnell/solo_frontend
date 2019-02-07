@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './Header.js';
+import Home from './Home.js';
 import UserCrudButtons from './UserCrudButtons';
 import RecipeCrudButtons from './RecipeCrudButtons';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
@@ -27,11 +28,7 @@ class App extends Component {
                 </Link>
 
             </div>
-            <br/>
-            <h2>This application will allow you to create and store your favourite recipes!</h2>
-            <br/>
    
-
             <div>
               <Route exact={true} path='/users' render={()=>(
                 <div>
@@ -41,6 +38,7 @@ class App extends Component {
 
               <Route exact={true} path='' render={()=>(
                 <div>
+                  <Home/>
                 </div>
               )}/>
 

@@ -6,7 +6,7 @@ class UserCrudButtons extends Component{
 
     constructor(){
         super();
-        this.state = {userData: {}, name: ""};
+        this.state = {userData: {}, name: null};
 
          axios.get("http://localhost:8080/Solo-API/rest/user/json/1")
          .then(response => {
@@ -88,6 +88,10 @@ class UserCrudButtons extends Component{
                 <input ref="id" id="userInputOne" type="number" placeholder="Enter id number" onChange={this.updateId}/>
                 <br/>
                 <input ref="name" id="userInput" type="text" placeholder="Enter your name" onChange={this.updateName}/>
+                <br/>
+                <input ref="email" id="userInput" type="text" placeholder="Enter your email address"/>
+                <br/>
+                <input ref="password" id="userInput" type="password" name="password" placeholder="Enter your password"/>
             </form>
             <br/>
             <br/>

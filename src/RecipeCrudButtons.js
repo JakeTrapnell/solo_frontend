@@ -6,7 +6,7 @@ class RecipeCrudButtons extends Component{
 
     constructor(){
         super();
-        this.state = {recipeData: {}, cuisine: "", timeToCook: "", isVegitarian: "", course: "", ingredients: "", method: ""};
+        this.state = {recipeData: {}, cuisine: null, timeToCook: null, isVegitarian: null, course: null, ingredients: null, method: null};
 
 
         axios.get("http://localhost:8080/Solo-API/rest/recipe/json/1")
@@ -135,16 +135,16 @@ class RecipeCrudButtons extends Component{
                 <br/>
                 <input ref="Course" id="recipeCourse" type="text" placeholder="Enter course:" onChange={this.updateCourse}/>
                 <br/>
-                <textarea ref="ingredients" id="RecipeIngredients" type="text" placeholder="Enter Ingredients:" rows="20" cols="40" onChange={this.updateIngredients}/>
+                <textarea ref="ingredients" id="RecipeIngredients" type="text" placeholder="Enter Ingredients:" rows="10" cols="40" onChange={this.updateIngredients}/>
                 <br/>
-                <textarea ref="method" id="recipemethod" type="text" placeholder="Enter Method:" rows="20" cols="40" onChange={this.updateMethod}/>
+                <textarea ref="method" id="recipemethod" type="text" placeholder="Enter Method:" rows="10" cols="40" onChange={this.updateMethod}/>
             </form>
             <br/>
             <br/>
             <button className= "navButton" onClick={this.createRecipe}>Create</button>
-            <button className= "navButton" onClick={this.readRecipe}>Search</button>
-            <button className= "navButton" onClick={this.deleteRecipe}>Delete</button>
+            <button className= "navButton" onClick={this.readRecipe}>Search by id</button>
             <button className= "navButton" onClick={this.updateRecipe}>Update</button>
+            <button className= "navButton" onClick={this.deleteRecipe}>Delete</button>
 
             <br/>            
             <br/>
