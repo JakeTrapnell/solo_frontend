@@ -6,7 +6,7 @@ class UserCrudButtons extends Component{
 
     constructor(){
         super();
-        this.state = {userData: {}, name: null};
+        this.state = {userData: {}, name: null, password: null, email: null};
 
          axios.get("http://localhost:8080/Solo-API/rest/user/json/1")
          .then(response => {
@@ -17,13 +17,21 @@ class UserCrudButtons extends Component{
     updateName = (event) =>{
         this.setState({name: event.target.value});
         console.log(this.state.name);
-        //handles name input change not the database
+    }
+
+    updatePassword = (event) =>{
+        this.setState({password: event.target.value});
+        console.log(this.state.password);
+    }
+
+    updateEmail = (event) =>{
+        this.setState({email: event.target.value});
+        console.log(this.state.email);
     }
 
     updateId = (event) =>{
         this.setState({id: event.target.value});
         console.log(this.state.id);
-        //handles id input change not the database
     }
     
     createUser =() =>{
@@ -31,7 +39,9 @@ class UserCrudButtons extends Component{
             method: 'POST',
             url: 'http://localhost:8080/Solo-API/rest/user/json',
             data: {
-                name: this.state.name
+                name: this.state.name,
+                password: this.state.password,
+                email: this.state.email
             }   
         }).then(response=>{
             console.log(response);
@@ -48,7 +58,10 @@ class UserCrudButtons extends Component{
           })
           .then(response=>{
               if(response.data !== undefined){
-                this.setState({name: response.data.name});
+                this.setState({
+                    name: response.data.name,
+                    password: response.data.password,
+                    email: response.data.email});
                 console.log(response.data);
               }
               else{
@@ -70,7 +83,11 @@ class UserCrudButtons extends Component{
         axios({
             method: 'POST',
             url: 'http://localhost:8080/Solo-API/rest/user/json/' + this.state.id,
-            data:  {name: this.state.name} 
+            data: {
+                name: this.state.name,
+                password: this.state.password,
+                email: this.state.email
+            }
         })
         .then(response=>{
             console.log(response);
@@ -85,13 +102,13 @@ class UserCrudButtons extends Component{
             <h2>Users</h2>
             <br/>
             <form>
-                <input ref="id" id="userInputOne" type="number" placeholder="Enter id number" onChange={this.updateId}/>
+                <input ref="id" id="idInputField" type="number" placeholder="Enter id number" onChange={this.updateId}/>
                 <br/>
-                <input ref="name" id="userInput" type="text" placeholder="Enter your name" onChange={this.updateName}/>
+                <input ref="name" id="nameInputField" type="text" placeholder="Enter your name" onChange={this.updateName}/>
                 <br/>
-                <input ref="email" id="userInput" type="text" placeholder="Enter your email address"/>
+                <input ref="email" id="emailInputField" type="text" placeholder="Enter your email address" onChange={this.updateEmail}/>
                 <br/>
-                <input ref="password" id="userInput" type="password" name="password" placeholder="Enter your password"/>
+                <input ref="password" id="passwordInputField" type="password" name="password" placeholder="Enter your password" onChange={this.updatePassword}/>
             </form>
             <br/>
             <br/>
@@ -104,9 +121,9 @@ class UserCrudButtons extends Component{
             <br/>
             <p>ID: {this.state.id}</p>
             <br/>
-            <p>User Name: {this.state.name}</p>
+            <p>Name: {this.state.name}</p>
             <br/>
-            <p></p>
+            <p>Email: {this.state.email}</p>
             </div>
 
         );
