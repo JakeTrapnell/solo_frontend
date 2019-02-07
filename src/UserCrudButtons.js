@@ -73,7 +73,7 @@ class UserCrudButtons extends Component{
     deleteUser =() =>{
         axios({
             method: 'DELETE',
-            url: 'http://localhost:8080/Solo-API/rest/user/json/' + this.state.id,
+            url: 'http://localhost:8080/Solo-API/rest/user/json/' + this.state.id + '/' + this.state.password,
             responseType: 'json'
         })
         console.log("user deleted");
