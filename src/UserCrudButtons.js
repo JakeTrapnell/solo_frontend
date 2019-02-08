@@ -43,8 +43,10 @@ class UserCrudButtons extends Component{
                 password: this.state.password,
                 email: this.state.email
             }   
-        }).then(response=>{
+        })
+            .then(response=>{
             console.log(response);
+            alert(response.data);
         })
         console.log(this.state.name + " : added to database");
     }
@@ -89,8 +91,9 @@ class UserCrudButtons extends Component{
                 email: this.state.email
             }
         })
-        .then(response=>{
-            console.log(response);
+            .then(response=>{
+                console.log(response.data);
+            alert(response.data);
         })
     }
     
