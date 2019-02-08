@@ -65,9 +65,13 @@ class RecipeCrudButtons extends Component{
                 ingredients: this.state.ingredients,
                 method: this.state.method
             }            
+        })
+            .then(response=>{
+                alert(response.data);
+
         });
         console.log(this.state.cuisine + " : added to database");
-    }
+    };
 
     readRecipe =() =>{
         axios({
@@ -77,7 +81,7 @@ class RecipeCrudButtons extends Component{
             responseType: 'json'
           })
           .then(response=>{
-              if(response.data !== undefined){
+              if(response.data !== null){
                 this.setState({
                     cuisine: response.data.cuisine,
                     timeToCook: response.data.timeToCook,
@@ -86,9 +90,10 @@ class RecipeCrudButtons extends Component{
                     ingredients: response.data.ingredients,
                     method: response.data.method});
                 console.log(response.data);
+                alert(response.data.cuisine)
               }
               else{
-                  console.log("failed to read recipe");                 
+                    alert("recipe with id " + this.state.id + " does not exist");               
               }
           });
     }
@@ -97,9 +102,10 @@ class RecipeCrudButtons extends Component{
     deleteRecipe =() =>{
         axios({
             method: 'DELETE',
-            url: 'http://localhost:8080/Solo-API/rest/user/json/' + this.state.id,
+            url: 'http://localhost:8080/Solo-API/rest/recipe/json/' + this.state.id,
             responseType: 'json'
         })
+        alert("recipe deleted")
     }
 
     updateRecipe =() =>{
@@ -114,6 +120,7 @@ class RecipeCrudButtons extends Component{
                 ingredients: this.state.ingredients,
                 method: this.state.method}         
         })
+        alert("recipe updated")
     }
 
     

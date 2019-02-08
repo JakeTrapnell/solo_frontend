@@ -47,9 +47,9 @@ class UserCrudButtons extends Component{
             .then(response=>{
             console.log(response);
             alert(response.data);
-        })
+        });
         console.log(this.state.name + " : added to database");
-    }
+    };
 
     readUser =() =>{
         axios({
@@ -59,7 +59,7 @@ class UserCrudButtons extends Component{
             responseType: 'json'
           })
           .then(response=>{
-              if(response.data !== undefined){
+              if(response.data !== null){
                 this.setState({
                     name: response.data.name,
                     password: response.data.password,
@@ -67,6 +67,7 @@ class UserCrudButtons extends Component{
                 console.log(response.data);
               }
               else{
+                  alert("user with id " + this.state.id + " does not exist");
                   console.log("failed to read user");                 
               }
           });
@@ -79,6 +80,7 @@ class UserCrudButtons extends Component{
             responseType: 'json'
         })
         console.log("user deleted");
+        alert(this.state.name + " has been deleted")
     }
 
     updateUser =() =>{
