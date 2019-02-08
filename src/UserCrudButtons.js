@@ -82,7 +82,7 @@ class UserCrudButtons extends Component{
     updateUser =() =>{
         axios({
             method: 'POST',
-            url: 'http://localhost:8080/Solo-API/rest/user/json/' + this.state.id,
+            url: 'http://localhost:8080/Solo-API/rest/user/json/' + this.state.id + '/' + this.state.password,
             data: {
                 name: this.state.name,
                 password: this.state.password,
